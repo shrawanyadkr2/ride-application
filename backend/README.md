@@ -150,6 +150,38 @@ Send a JSON object with the following structure:
   }
   ```
 
+## User Logout Endpoint
+
+`GET /api/users/logout`
+
+### Description
+
+Logs out the authenticated user by blacklisting their JWT token and clearing the authentication cookie.
+
+### Authentication
+
+Requires a valid JWT token sent via cookie (`token`) or `Authorization` header.
+
+### Request
+
+No body required.  
+Send the request with the authentication token in either:
+
+- Cookie: `token`
+- Header: `Authorization: Bearer <token>`
+
+### Responses
+
+#### Success
+
+- **Status Code:** `200 OK`
+- **Body:**
+  ```json
+  {
+    "message": "Logged out successfully."
+  }
+  ```
+
 ## How to Test
 
 Use a tool like [Postman](https://www.postman.com/) or `curl`:
@@ -175,6 +207,13 @@ curl -X POST http://localhost:4000/api/user/login \
     "email": "john.doe@example.com",
     "password": "yourpassword"
   }'
+```
+
+### Logout
+
+```bash
+curl -X GET http://localhost:4000/api/users/logout \
+  -H "Authorization: Bearer <your_jwt_token>"
 ```
 
 ---
