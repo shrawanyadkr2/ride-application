@@ -182,6 +182,47 @@ Send the request with the authentication token in either:
   }
   ```
 
+## User Profile Endpoint
+
+`GET /api/users/profile`
+
+### Description
+
+Returns the authenticated user's profile information.  
+Requires a valid JWT token for authentication.
+
+### Authentication
+
+Send the JWT token in either:
+
+- Cookie: `token`
+- Header: `Authorization: Bearer <token>`
+
+### Request
+
+No body required.
+
+### Responses
+
+#### Success
+
+- **Status Code:** `200 OK`
+- **Body:**
+  ```json
+  {
+    "user": {
+      "_id": "user_id",
+      "fullname": {
+        "firstname": "John",
+        "lastname": "Doe"
+      },
+      "email": "john.doe@example.com",
+      "socketId": "optional_socket_id"
+      // other fields...
+    }
+  }
+  ```
+
 ## How to Test
 
 Use a tool like [Postman](https://www.postman.com/) or `curl`:
@@ -213,6 +254,13 @@ curl -X POST http://localhost:4000/api/user/login \
 
 ```bash
 curl -X GET http://localhost:4000/api/users/logout \
+  -H "Authorization: Bearer <your_jwt_token>"
+```
+
+### Profile
+
+```bash
+curl -X GET http://localhost:4000/api/users/profile \
   -H "Authorization: Bearer <your_jwt_token>"
 ```
 
