@@ -1,4 +1,4 @@
-# User Registration & Login API Documentation (Author: Shrawan)
+# Backend Documentation (Author: Shrawan)
 
 ## Table of Contents
 
