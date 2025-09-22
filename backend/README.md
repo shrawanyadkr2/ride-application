@@ -1,4 +1,4 @@
-# User Registration API Documentation
+# User Registration API Documentation (Auther: Shrawan)
 
 ## Endpoint
 
