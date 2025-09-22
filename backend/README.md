@@ -10,6 +10,11 @@
   - [User Logout Endpoint](#user-logout-endpoint)
   - [User Profile Endpoint](#user-profile-endpoint)
   - [How to Test](#how-to-test)
+- [Captain API Documentation](#captain-api-documentation)
+  - [Captain Registration](#captain-registration)
+  - [Captain Login](#captain-login)
+  - [Captain Logout](#captain-logout)
+  - [Captain Profile](#captain-profile)
 
 ## Local Setup Instructions
 
@@ -310,4 +315,62 @@ curl -X GET http://localhost:4000/api/users/profile \
   -H "Authorization: Bearer <your_jwt_token>"
 ```
 
----
+## Captain API Documentation
+
+### Captain Registration
+
+**Endpoint:**  
+`POST /api/captains/register`
+
+**Description:**  
+Registers a new captain with vehicle details.
+
+**Request Body:**
+```json
+{
+  "fullname": {
+    "firstname": "Shrawan",
+    "lastname": "Kumar"
+  },
+  "email": "shrawan29yadav@gmail.com",
+  "password": "sky@12345",
+  "vehicle": {
+    "color": "red",
+    "plate": "mp 04 XY 8277",
+    "capacity": 3,
+    "vehicleType": "car"
+  }
+}
+```
+
+### Captain Login
+
+**Endpoint:**  
+`POST /api/captains/login`
+
+**Description:**  
+Authenticates a captain and returns a JWT token.
+
+**Request Body:**
+```json
+{
+  "email": "shrawan29yadav@gmail.com",
+  "password": "sky@12345"
+}
+```
+
+### Captain Logout
+
+**Endpoint:**  
+`GET /api/captains/logout`
+
+**Description:**  
+Logs out the authenticated captain.
+
+### Captain Profile
+
+**Endpoint:**  
+`GET /api/captains/profile`
+
+**Description:**  
+Returns the authenticated captain's profile information.

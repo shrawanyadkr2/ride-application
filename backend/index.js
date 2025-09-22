@@ -4,6 +4,7 @@ const express = require("express");
 const cookiesParser = require("cookie-parser");
 
 const userRoutes = require('./routes/user.routes');
+const captainRoutes = require('./routes/captain.routes');
 const app = express();
 const cors = require('cors');
 
@@ -23,6 +24,7 @@ app.get('/', function (req, res) {
 })
 
 app.use('/api/users', userRoutes);
+app.use('/api/captains', captainRoutes);
 
 app.listen(PORT, function () {
     console.log(`server is runnig at the port ${PORT}`)
