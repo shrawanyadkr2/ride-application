@@ -1,16 +1,16 @@
-# User Registration API Documentation (Auther: Shrawan)
+# User Registration & Login API Documentation (Author: Shrawan)
 
-## Endpoint
+## User Registration Endpoint
 
 `POST /api/user/register`
 
-## Description
+### Description
 
 Registers a new user in the system.  
 Requires a JSON body with user details.  
 Validates email, full name (first and last), and password.
 
-## Request Body
+### Request Body
 
 Send a JSON object with the following structure:
 
@@ -25,16 +25,16 @@ Send a JSON object with the following structure:
 }
 ```
 
-### Field Requirements
+#### Field Requirements
 
 - `fullname.firstname`: String, minimum 3 characters, required
 - `fullname.lastname`: String, minimum 3 characters, required
 - `email`: Valid email format, required
 - `password`: String, minimum 6 characters, required
 
-## Responses
+### Responses
 
-### Success
+#### Success
 
 - **Status Code:** `201 Created`
 - **Body:**
@@ -53,7 +53,7 @@ Send a JSON object with the following structure:
   }
   ```
 
-### Validation Error
+#### Validation Error
 
 - **Status Code:** `400 Bad Request`
 - **Body:**
@@ -73,7 +73,74 @@ Send a JSON object with the following structure:
   }
   ```
 
-### Server Error
+#### Server Error
+
+- **Status Code:** `500 Internal Server Error`
+- **Body:**
+  ```json
+  {
+    "error": "Error message"
+  }
+  ```
+
+## User Login Endpoint
+
+`POST /api/user/login`
+
+### Description
+
+Authenticates an existing user.  
+Requires a JSON body with email and password.  
+Validates credentials and returns a JWT token upon success.
+
+### Request Body
+
+Send a JSON object with the following structure:
+
+```json
+{
+  "email": "john.doe@example.com",
+  "password": "yourpassword"
+}
+```
+
+#### Field Requirements
+
+- `email`: Valid email format, required
+- `password`: String, minimum 6 characters, required
+
+### Responses
+
+#### Success
+
+- **Status Code:** `200 OK`
+- **Body:**
+  ```json
+  {
+    "user": {
+      "_id": "user_id",
+      "fullname": {
+        "firstname": "John",
+        "lastname": "Doe"
+      },
+      "email": "john.doe@example.com"
+      // other fields...
+    },
+    "token": "jwt_token"
+  }
+  ```
+
+#### Authentication Error
+
+- **Status Code:** `401 Unauthorized`
+- **Body:**
+  ```json
+  {
+    "error": "Invalid email or password"
+  }
+  ```
+
+#### Server Error
 
 - **Status Code:** `500 Internal Server Error`
 - **Body:**
@@ -87,11 +154,24 @@ Send a JSON object with the following structure:
 
 Use a tool like [Postman](https://www.postman.com/) or `curl`:
 
+### Registration
+
 ```bash
 curl -X POST http://localhost:4000/api/user/register \
   -H "Content-Type: application/json" \
   -d '{
     "fullname": { "firstname": "John", "lastname": "Doe" },
+    "email": "john.doe@example.com",
+    "password": "yourpassword"
+  }'
+```
+
+### Login
+
+```bash
+curl -X POST http://localhost:4000/api/user/login \
+  -H "Content-Type: application/json" \
+  -d '{
     "email": "john.doe@example.com",
     "password": "yourpassword"
   }'
