@@ -1,5 +1,51 @@
 # User Registration & Login API Documentation (Author: Shrawan)
 
+## Table of Contents
+
+- [User Registration & Login API Documentation (Author: Shrawan)](#user-registration--login-api-documentation-author-shrawan)
+  - [Table of Contents](#table-of-contents)
+  - [Local Setup Instructions](#local-setup-instructions)
+  - [User Registration Endpoint](#user-registration-endpoint)
+  - [User Login Endpoint](#user-login-endpoint)
+  - [User Logout Endpoint](#user-logout-endpoint)
+  - [User Profile Endpoint](#user-profile-endpoint)
+  - [How to Test](#how-to-test)
+
+## Local Setup Instructions
+
+1. **Clone the Repository**
+
+   ```bash
+   git clone https://github.com/yourusername/your-repo.git
+   cd your-repo
+   ```
+
+2. **Install Dependencies**
+
+   ```bash
+   npm install
+   ```
+
+3. **Set Up Environment Variables**
+
+   Create a `.env` file in the root directory and add the following:
+
+   ```env
+   PORT=4000
+   MONGODB_URI=your_mongodb_uri
+   JWT_SECRET=your_jwt_secret
+   ```
+
+4. **Run the Application**
+
+   ```bash
+   npm start
+   ```
+
+5. **API Documentation**
+
+   Access the API documentation at `http://localhost:4000/api-docs`.
+
 ## User Registration Endpoint
 
 `POST /api/user/register`
