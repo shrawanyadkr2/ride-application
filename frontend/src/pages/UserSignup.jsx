@@ -1,26 +1,31 @@
-import React, {  useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import axios from 'axios';
 
 const UserSignup = () => {
 
-  const [email,setEmail] = useState('');
-  const [password,setPassword] = useState('');
-  const [firstname,setFirstname] = useState('');
-  const [lastname,setLastname] = useState('');
-  const [userData,setUserData] = useState({});
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [firstname, setFirstname] = useState('');
+  const [lastname, setLastname] = useState('');
+  const [userData, setUserData] = useState({});
+
+  const navigate = useNavigate();
 
 
-  const submitHandler=(e)=>{
+  const submitHandler = async (e) => {
     e.preventDefault();
-    setUserData({
-      fullName:{
-        firstName:firstname,
-        lastName:lastname
+    const newUser = {
+      fullName: {
+        firstName: firstname,
+        lastName: lastname
       },
-      email:email,
-      password:password
-    })
-    
+      email: email,
+      password: password
+    }
+
+    const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/user/register`, newUser);
+
     setEmail('')
     setFirstname('')
     setLastname('')
@@ -44,7 +49,7 @@ const UserSignup = () => {
                 className='bg-[#eeeeee] w-1/2  rounded px-4 py-3 border  text-base placeholder:sm'
                 type="text"
                 value={firstname}
-                onChange={(e)=>{
+                onChange={(e) => {
                   setFirstname(e.target.value)
                 }}
                 placeholder='firstname' />
@@ -53,7 +58,7 @@ const UserSignup = () => {
                 className='bg-[#eeeeee]  w-1/2 rounded px-4 py-3 border  text-base placeholder:sm'
                 type="text"
                 value={lastname}
-                onChange={(e)=>{
+                onChange={(e) => {
                   setLastname(e.target.value)
                 }}
                 placeholder='lastname' />
@@ -64,11 +69,11 @@ const UserSignup = () => {
             <input
               required
               value={email}
-              onChange={(e)=>{
+              onChange={(e) => {
                 setEmail(e.target.value)
 
               }}
-              
+
               className='bg-[#eeeeee] mb-6 rounded px-4 py-3 border w-full text-base placeholder:sm'
               type="email"
               placeholder='example@gmail.com' />
@@ -81,7 +86,7 @@ const UserSignup = () => {
               required
 
               value={password}
-              onChange={(e)=>{
+              onChange={(e) => {
                 setPassword(e.target.value)
               }}
 
