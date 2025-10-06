@@ -89,7 +89,7 @@ const CaptainSignup = () => {
               placeholder='Example#76637' />
 
 
-            <button className='bg-[#111] text-white font-semibold mb-7 rounded px-4 py-3  w-full text-base placeholder:sm'>login</button>
+            <button className='bg-[#111] text-white font-semibold mb-7 rounded px-4 py-3  w-full text-base placeholder:sm'>Create Account</button>
             <p className='text-center'>Already have an account? <Link to='/CaptainLogin' className='text-blue-600'>Login here</Link></p>
           </form>
         </div>
